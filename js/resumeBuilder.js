@@ -15,13 +15,12 @@ var bio = {
 	},
 	"welcomeMessage": "Welcome to my profile!",
 	"skills": [
-		"Good orientation in information systems",
-		"High technological abilities",
-		"Background and experience CUDA kernel , C , C++ , Java , Java on Android ,Objective C, Assembly & Matlab",
-		"Background and experience in Databases like MYSQL, Oracle, Access",
-		"Deep knowledge of Internet technologies, TCP/IP & communication protocols"
+		"Hard worker",
+		"Curious",
+		"Team Player",
+		"3P shoot"
 	],
-	"biopic": "https://www.linkedin.com/in/avi-levinshtein-113a042b",
+	"biopic": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/5/005/048/200/0be56be.jpg",
 };
 
 var education = {
@@ -41,7 +40,7 @@ var education = {
 	}]
 };
 
-var education = {
+var work = {
 	"jobs": [{
 		"employer": "ironSource",
 		"title": "Mobile Developer",
@@ -65,6 +64,71 @@ var projects = {
 		"images": ["https://www.dropbox.com/s/jcum3xuqj32cc1k/Cellular%20Applications%20-%20GIC.pptx"]
 	}]
 };
+
+//put my role
+var formatedRole = HTMLheaderRole.replace("%data%", bio["role"]);
+$("#header").prepend(formatedRole);
+
+//Put my name
+var formatedName = HTMLheaderName.replace("%data%", bio["name"]);
+$("#header").prepend(formatedName);
+
+//Put my mobile
+var formatedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+$("#header").append(formatedMobile);
+
+//Put my email
+var formatedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+$("#header").append(formatedEmail);
+
+//put my gihub
+var formatedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+$("#header").append(formatedGithub);
+
+//put my twitter
+// ....
+
+//put location
+var formatedLocation = HTMLlocation.replace("%data%", bio.contacts["location"]);
+$("#header").append(formatedLocation);
+
+//Put my picture
+var formatedPicture = HTMLbioPic.replace("%data%", bio["biopic"]);
+$("#header").append(formatedPicture);
+
+//Put my skilles
+var skills = bio["skills"];
+if (skills !== null && skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	for(var skill in skills) {
+		var formatedSkill = HTMLskills.replace("%data%", skills[skill]);
+		$("#skills").append(formatedSkill);
+	}
+}
+
+//****************************************
+//Put my jobs
+var jobs = work.jobs;
+if (jobs !== null && jobs.length > 0) {
+	for(var job in jobs) {
+		var currentJob = jobs[job];
+		$("#workExperience").append(HTMLworkStart);
+
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", currentJob.employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", currentJob.title);
+		var formattedEmployerTittle = formattedEmployer + " " + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTittle);
+		
+		var formattedDates = HTMLworkDates.replace("%data%", currentJob.dates);
+		$(".work-entry:last").append(formattedDates);
+
+		//var formattedLocation = HTMLworkLocation.replace("%data%", currentJob.location);
+		var formattedExperience = HTMLworkDescription.replace("%data%", currentJob.description);
+		$(".work-entry:last").append(formattedExperience);
+		
+	}
+}
+
 
 
 
