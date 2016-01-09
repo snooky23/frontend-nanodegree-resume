@@ -63,6 +63,7 @@ h5 {
 
 /*Fix double padding. Since we're already set a padding in #education-entry*/
 .online_classes_title {
+  padding-top:10px 5%;
   padding-left:0;
 }
 

@@ -169,6 +169,9 @@ var work = {
 				$(".work-entry:last").append(formattedExperience);		
 			}
 		}
+	},
+	"displaymap": function() {
+		$("#mapDiv").append(googleMap);
 	}
 };
 
@@ -208,6 +211,7 @@ var projects = {
 	}
 };
 
+
 //****************************************
 //Main code:
 
@@ -215,7 +219,7 @@ bio.display();
 work.display();
 projects.display();
 education.display();
-
+work.displaymap();
 //Get all job locations
 function locationizer(work_obj) {
 	var locationsArray = [];
@@ -232,7 +236,6 @@ function inName(name) {
 	name[0] = name[0].slice(0,1).toUpperCase + name[0].slice(1).toLowerCase();
 
 	return name[0] + " " + name[1];
-
 }
 
 
