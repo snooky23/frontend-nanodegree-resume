@@ -211,16 +211,6 @@ var projects = {
 	}
 };
 
-var websystem = {
-	"getclick":  function() {
-		$(document).click(function(loc) {
-			var x = loc.pageX;
-			var y = loc.pageY;
-
-			logClick(x,y);
-		});
-	}
-};
 //****************************************
 //Main code:
 
