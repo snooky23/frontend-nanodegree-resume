@@ -211,7 +211,16 @@ var projects = {
 	}
 };
 
+var websystem = {
+	"getclick":  function() {
+		$(document).click(function(loc) {
+			var x = loc.pageX;
+			var y = loc.pageY;
 
+			logClick(x,y);
+		});
+	}
+};
 //****************************************
 //Main code:
 
@@ -220,6 +229,7 @@ work.display();
 projects.display();
 education.display();
 work.displaymap();
+
 //Get all job locations
 function locationizer(work_obj) {
 	var locationsArray = [];
