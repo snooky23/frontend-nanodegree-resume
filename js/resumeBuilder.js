@@ -230,24 +230,6 @@ projects.display();
 education.display();
 work.displaymap();
 
-//Get all job locations
-function locationizer(work_obj) {
-	var locationsArray = [];
-	for (job in work_obj.jobs) {
-		var newLocation = work_obj.jobs[job].location;
-		locationsArray.push(newLocation);
-	}
-	return locationsArray;
-}
-
-function inName(name) {
-	name = name.trim().split(" ");
-	name[1] = name[1].toUpperCase();
-	name[0] = name[0].slice(0,1).toUpperCase + name[0].slice(1).toLowerCase();
-
-	return name[0] + " " + name[1];
-}
-
 
 
 
