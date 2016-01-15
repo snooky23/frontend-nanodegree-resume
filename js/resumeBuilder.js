@@ -176,14 +176,14 @@ var work = {
 };
 
 var projects = {
-	"my_projects": [{
+	"projects": [{
 		"title": "Just In Case",
 		"dates": "2014",
 		"description": "JUST IN CASE is an accident management APP. This app is meant to help you JUST IN CASE you're involved in an accident. It's offers a quick and simple way for generating a report in PDF format. The user can save Pictures, Text , GPS location etc. The application was developed with Eclipse for android ADT, Java, cloud computing, consideration and UI design and implementation models with on android OS 4.4 kitkat.",
 		"images": ["images/jisproject.PNG","images/jiscam.PNG"]
 	}],
 	"display":  function() {
-		var projectsArray = projects.my_projects;
+		var projectsArray = projects.projects;
 		if (projectsArray !== null && projectsArray.length > 0) {
 			for(var project in projectsArray) {
 				var currentProject = projectsArray[project];
