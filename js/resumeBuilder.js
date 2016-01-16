@@ -3,6 +3,7 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 //Global variables
 var data = '%data%';
+var $education = $("#education");
 
 //My JSON Details
 var bio = {
@@ -93,32 +94,11 @@ var education = {
 		"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
 	}],
 	"display":  function() {
-		var $education = $("#education");
 		var schools = education.schools;
 		if (schools !== null && schools.length > 0) {
 			for(var school in schools) {
 				var currentSchool = schools[school];
-				$education.append(HTMLschoolStart);
-
-				var formattedName = HTMLschoolName.replace(data, currentSchool.name);
-				var formattedDegree = HTMLschoolDegree.replace(data, currentSchool.degree);
-				var formattedNameDegree = formattedName + " " + formattedDegree
-				$(".education-entry:last").append(formattedNameDegree);
-
-				var formattedDates = HTMLschoolDates.replace(data, currentSchool.dates);
-				$(".education-entry:last").append(formattedDates);
-
-				var formattedLocation = HTMLschoolLocation.replace(data, currentSchool.location);
-				$(".education-entry:last").append(formattedLocation);
-
-				//check size of pictures
-				var majorsArray = currentSchool.majors;
-				if (majorsArray !== null && majorsArray.length > 0) {
-					for(major in majorsArray) {
-						var formattedMajor = HTMLschoolMajor.replace(data, majorsArray[major]);
-						$(".education-entry:last").append(formattedMajor);
-					}
-				}
+				this.displaySchool(currentSchool);
 			}
 		}
 		$(".education-entry:last").append(HTMLonlineClasses);
@@ -127,19 +107,44 @@ var education = {
 		if (onlineCourses !== null && onlineCourses.length > 0) {
 			for(var course in onlineCourses) {
 				var currentOnlineCourse = onlineCourses[course];
-				
-				var formattedTitle = HTMLonlineTitle.replace(data, currentOnlineCourse.title);
-				var formattedOnlineSchool = HTMLonlineSchool.replace(data, currentOnlineCourse.school);
-				var formattedTitleAndSchool = formattedTitle + " " + formattedOnlineSchool;
-				$(".education-entry:last").append(formattedTitleAndSchool);
-
-				var formattedOnlineDates = HTMLonlineDates.replace(data, currentOnlineCourse.date);
-				$(".education-entry:last").append(formattedOnlineDates);
-
-				var formattedUrl = HTMLonlineURL.replace(data, currentOnlineCourse.url);
-				$(".education-entry:last").append(formattedUrl);
+				this.displayOnlineCourses(currentOnlineCourse);
 			}
 		}
+	},
+	"displaySchool": function (currentSchool) {
+		$education.append(HTMLschoolStart);
+
+		var formattedName = HTMLschoolName.replace(data, currentSchool.name);
+		var formattedDegree = HTMLschoolDegree.replace(data, currentSchool.degree);
+		var formattedNameDegree = formattedName + " " + formattedDegree
+		$(".education-entry:last").append(formattedNameDegree);
+
+		var formattedDates = HTMLschoolDates.replace(data, currentSchool.dates);
+		$(".education-entry:last").append(formattedDates);
+
+		var formattedLocation = HTMLschoolLocation.replace(data, currentSchool.location);
+		$(".education-entry:last").append(formattedLocation);
+
+		//check size of pictures
+		var majorsArray = currentSchool.majors;
+		if (majorsArray !== null && majorsArray.length > 0) {
+			for(major in majorsArray) {
+				var formattedMajor = HTMLschoolMajor.replace(data, majorsArray[major]);
+				$(".education-entry:last").append(formattedMajor);
+			}
+		}
+	},
+	"displayOnlineCourses": function(currentOnlineCourse) {
+		var formattedTitle = HTMLonlineTitle.replace(data, currentOnlineCourse.title);
+		var formattedOnlineSchool = HTMLonlineSchool.replace(data, currentOnlineCourse.school);
+		var formattedTitleAndSchool = formattedTitle + " " + formattedOnlineSchool;
+		$(".education-entry:last").append(formattedTitleAndSchool);
+
+		var formattedOnlineDates = HTMLonlineDates.replace(data, currentOnlineCourse.date);
+		$(".education-entry:last").append(formattedOnlineDates);
+
+		var formattedUrl = HTMLonlineURL.replace(data, currentOnlineCourse.url);
+		$(".education-entry:last").append(formattedUrl);
 	}
 };
 
