@@ -4,6 +4,7 @@ This is empty on purpose! Your code to build the resume will go here.
 //Global variables
 var data = '%data%';
 var $education = $("#education");
+var $workExperience = $("#workExperience");
 
 //My JSON Details
 var bio = {
@@ -96,19 +97,17 @@ var education = {
 	"display":  function() {
 		var schools = education.schools;
 		if (schools !== null && schools.length > 0) {
-			for(var school in schools) {
-				var currentSchool = schools[school];
-				this.displaySchool(currentSchool);
-			}
+			schools.forEach(function(val){
+				education.displaySchool(val);
+			});
 		}
 		$(".education-entry:last").append(HTMLonlineClasses);
 
 		var onlineCourses = education.onlineCourses;
 		if (onlineCourses !== null && onlineCourses.length > 0) {
-			for(var course in onlineCourses) {
-				var currentOnlineCourse = onlineCourses[course];
-				this.displayOnlineCourses(currentOnlineCourse);
-			}
+			onlineCourses.forEach(function(val){
+				education.displayOnlineCourses(val);
+			})
 		}
 	},
 	"displaySchool": function (currentSchool) {
@@ -163,27 +162,30 @@ var work = {
 		"description": "Providing technical advice and guidance for clients , Writing specification & requirements documents. System design and optimum product portfolio combinations for customers throughout all stages of integration and - testing & Implementing products and providing Tier 3 level support."
 	}],
 	"display":  function() {
-		var $workExperience = $("#workExperience");
 		var jobs = work.jobs;
 		if (jobs !== null && jobs.length > 0) {
-			for(var job in jobs) {
-				var currentJob = jobs[job];
-				$workExperience.append(HTMLworkStart);
-
-				var formattedEmployer = HTMLworkEmployer.replace(data, currentJob.employer);
-				var formattedTitle = HTMLworkTitle.replace(data, currentJob.title);
-				var formattedEmployerTittle = formattedEmployer + " " + formattedTitle;
-				$(".work-entry:last").append(formattedEmployerTittle);
-				
-				var formattedDates = HTMLworkDates.replace(data, currentJob.dates);
-				$(".work-entry:last").append(formattedDates);
-
-				var formattedExperience = HTMLworkDescription.replace(data, currentJob.description);
-				$(".work-entry:last").append(formattedExperience);		
-			}
+			jobs.forEach(function(val){
+				work.displayWork(val);
+			});
 		}
+
+		work.displayMap();
 	},
-	"displaymap": function() {
+	"displayWork": function(currentJob) {
+		$workExperience.append(HTMLworkStart);
+
+		var formattedEmployer = HTMLworkEmployer.replace(data, currentJob.employer);
+		var formattedTitle = HTMLworkTitle.replace(data, currentJob.title);
+		var formattedEmployerTittle = formattedEmployer + " " + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTittle);
+		
+		var formattedDates = HTMLworkDates.replace(data, currentJob.dates);
+		$(".work-entry:last").append(formattedDates);
+
+		var formattedExperience = HTMLworkDescription.replace(data, currentJob.description);
+		$(".work-entry:last").append(formattedExperience);	
+	},
+	"displayMap": function() {
 		$("#mapDiv").append(googleMap);
 	}
 };
@@ -232,7 +234,6 @@ bio.display();
 work.display();
 projects.display();
 education.display();
-work.displaymap();
 
 
 
