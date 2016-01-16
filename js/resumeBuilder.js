@@ -35,25 +35,8 @@ var bio = {
 		//Put div frame
 		$("#header").append(HTMLcontactStart);
 
-		//Put my mobile
-		var formatedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-		$("#contact-details").append(formatedMobile);
-
-		//Put my email
-		var formatedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-		$("#contact-details").append(formatedEmail);
-
-		//put my gihub
-		var formatedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-		$("#contact-details").append(formatedGithub);
-
-		//put my twitter
-		var formatedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-		$("#contact-details").append(formatedTwitter);
-
-		//put location
-		var formatedLocation = HTMLlocation.replace("%data%", bio.contacts["location"]);
-		$("#contact-details").append(formatedLocation);
+		this.insertContact("#contact-details");
+		this.insertContact("#footerContacts");
 
 		//Put my picture
 		var formatedPicture = HTMLbioPic.replace("%data%", bio["biopic"]);
@@ -69,6 +52,27 @@ var bio = {
 			}
 		}
 	},
+	"insertContact": function(jQueryFrameId) {
+		//Put my mobile
+		var formatedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+		$(jQueryFrameId).append(formatedMobile);
+
+		//Put my email
+		var formatedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+		$(jQueryFrameId).append(formatedEmail);
+
+		//put my gihub
+		var formatedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+		$(jQueryFrameId).append(formatedGithub);
+
+		//put my twitter
+		var formatedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+		$(jQueryFrameId).append(formatedTwitter);
+
+		//put location
+		var formatedLocation = HTMLlocation.replace("%data%", bio.contacts["location"]);
+		$(jQueryFrameId).append(formatedLocation);
+	}
 };
 
 var education = {
